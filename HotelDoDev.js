@@ -1,7 +1,7 @@
 // HOTEL
 let idHotel = [1, 2, 3]
 let nomesHotel = ["Hotel 1", "Hotel 2", "Hotel 3"]
-let categoria = ["A", "B", "C"]
+let categoria = ["A", "B", "A"]
 let endereco = ["End 1", "End 2", "End 3"]
 let telefone = [222, 555, 333]
 // RESERVA
@@ -19,7 +19,8 @@ console.log("Dados Reserva -  " + reservaId + "  -  " + reservaIdHotel + "  -  "
 // let idBuscar = prompt(`Qual o ID do Hotel que deseja buscar?`)
 // ExibirReservasDoHotel(3)
 // ExibirHotelEnderecoDiaDeEntradaEsaida(5)
-ExibirTodasAsReservas("Marcos")
+// ExibirTodasAsReservas("Marcos")
+// ExibirHoteisDaCategoria("B")
 
 function CadastrarHotel(){
     id.push(prompt(`Qual o ID do hotel?`))
@@ -35,7 +36,6 @@ function CadastrarReserva(){
     reservaDiaEntrada.push(prompt(`Qual o dia de entrada?`))
     reservaDiaSaida.push(prompt(`Qual o dia de saída?`))
 }
-
 function ExibirReservasDoHotel(idHotelParametro){
     let posicao = idHotel.indexOf(idHotelParametro)     
     console.log(`Nome: ${nomesHotel[posicao]}, Nome do responsável: ${reservaNomeResponsavel[posicao]}, Dia de entrada: ${reservaDiaEntrada[posicao]}, Dia de saída: ${reservaDiaSaida[posicao]}`)
@@ -62,4 +62,14 @@ function ExibirTodasAsReservas(nomeParametro){
     console.log(`ID Reserva: ${reservaAux}, ID Hotel: ${reservaIdHotelAux}, Nome: ${nomeAux}, Dia Entrada: ${diaEntrada}, Dia Saída ${diaSaida}`)
     
 }
+function ExibirHoteisDaCategoria(categoriaParametro){
+    let hoteis = []
+    categoria.filter((element, index) => {
+        if(element == categoriaParametro){
+            hoteis.push(nomesHotel[index])
+        }
+    })
+    console.log(`Hotéis com a categoria ${categoriaParametro}: ${hoteis}`)
+}
+
 
