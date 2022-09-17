@@ -16,11 +16,12 @@ let reservaDiaSaida = [11, 16, 25]
 console.log("Dados Hotel -  " + idHotel + "  -  " + nomesHotel + "  -  " + categoria + "  -  " + endereco + "  -  " + telefone)
 console.log("Dados Reserva -  " + reservaId + "  -  " + reservaIdHotel + "  -  " + reservaNomeResponsavel + "  -  " + reservaDiaEntrada + "  -  " + reservaDiaSaida)
 
-// let idBuscar = prompt(`Qual o ID do Hotel que deseja buscar?`)
 // ExibirReservasDoHotel(3)
 // ExibirHotelEnderecoDiaDeEntradaEsaida(5)
 // ExibirTodasAsReservas("Marcos")
 // ExibirHoteisDaCategoria("B")
+AtualizarTelefone(2, 698)
+
 
 function CadastrarHotel(){
     id.push(prompt(`Qual o ID do hotel?`))
@@ -71,5 +72,10 @@ function ExibirHoteisDaCategoria(categoriaParametro){
     })
     console.log(`Hotéis com a categoria ${categoriaParametro}: ${hoteis}`)
 }
-
+function AtualizarTelefone(idHotelParametro, telefoneParametro){
+    console.log(telefone)
+    let posicao = idHotel.indexOf(idHotelParametro)
+    telefone[posicao] = telefoneParametro
+    console.log(telefone)
+}
 
