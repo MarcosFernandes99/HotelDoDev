@@ -1,27 +1,57 @@
 // HOTEL
-let idHotel = [1, 2, 3]
-let nomesHotel = ["Hotel 1", "Hotel 2", "Hotel 3"]
-let categoria = ["A", "B", "A"]
-let endereco = ["End 1", "End 2", "End 3"]
-let telefone = [222, 555, 333]
+let idHotel = []
+let nomesHotel = []
+let categoria = []
+let endereco = []
+let telefone = []
 // RESERVA
-let reservaId = [4, 5, 6]
-let reservaIdHotel = [2, 3, 3]
-let reservaNomeResponsavel = ["Fulano", "Marcos", "Marcos"]
-let reservaDiaEntrada = [8, 11, 17]
-let reservaDiaSaida = [11, 16, 25]
+let reservaId = []
+let reservaIdHotel = []
+let reservaNomeResponsavel = []
+let reservaDiaEntrada = []
+let reservaDiaSaida = []
 
-// CadastrarHotel()
-// CadastrarReserva()
+let continuar = true
+do{
+let opcao = prompt(`1-Cadastrar Hotel/2-Cadastrar Reserva/3-Exibir todas reservas do Hotel/4-Exibir informações da reserva/5-Exibir reservas da pessoa/6-Exibir hotéis por categoria/7-Atualizar telefone de cadastro/8-Encerrar`)
 
-console.log("Dados Hotel -  " + idHotel + "  -  " + nomesHotel + "  -  " + categoria + "  -  " + endereco + "  -  " + telefone)
-console.log("Dados Reserva -  " + reservaId + "  -  " + reservaIdHotel + "  -  " + reservaNomeResponsavel + "  -  " + reservaDiaEntrada + "  -  " + reservaDiaSaida)
+switch (opcao){
+    case "1": 
+    CadastrarHotel()
+    console.log("Dados Hotel -  " + idHotel + "  -  " + nomesHotel + "  -  " + categoria + "  -  " + endereco + "  -  " + telefone)
+    break;
+    case "2":
+    CadastrarReserva()
+    console.log("Dados Reserva -  " + reservaId + "  -  " + reservaIdHotel + "  -  " + reservaNomeResponsavel + "  -  " + reservaDiaEntrada + "  -  " + reservaDiaSaida)
+    break;
+    case "3":
+    let idHotelBuscar = prompt(`Digite o ID do hotel para aparecer todas as reservas!`)
+    ExibirReservasDoHotel(idHotelBuscar)
+    break;
+    case "4":
+    let idReservaBuscar = prompt(`Digite o ID da reserva para aparecer todas informações!`)
+    ExibirHotelEnderecoDiaDeEntradaEsaida(idReservaBuscar)
+    break;
+    case "5":
+    let nomeBuscar = prompt(`Digite o nome da pessoa para aparecer todas suas reservas!`)
+    ExibirTodasAsReservas(nomeBuscar)
+    break;
+    case "6":
+    let categoriaBuscar = prompt(`Digite a categoria que deseja e aparecerá todos os hotéis correspondentes!`)
+    ExibirHoteisDaCategoria(categoriaBuscar)
+    break;
+    case "7":
+    let idBuscar = prompt(`Digite o ID do hotel!`)
+    let telefoneBuscar = prompt(`Digite o telefone atualizado!`)
+    AtualizarTelefone(idBuscar, telefoneBuscar)
+    break;
+    default:
+    console.log(`Programa encerrado!`)
+    continuar = false
+    break;
+}
 
-// ExibirReservasDoHotel(2)
-// ExibirHotelEnderecoDiaDeEntradaEsaida(5)
-// ExibirTodasAsReservas("Fulano")
-// ExibirHoteisDaCategoria("B")
-// AtualizarTelefone(2, 698)
+} while(continuar)
 
 
 function CadastrarHotel(){
@@ -69,9 +99,15 @@ function CadastrarReserva(){
     }
 }
 function ExibirReservasDoHotel(idHotelParametro){
-    let posicao = idHotel.indexOf(idHotelParametro)
-    console.log(posicao)
-    console.log(`Nome: ${nomesHotel[posicao]}, Nome do responsável: ${reservaNomeResponsavel[posicao]}, Dia de entrada: ${reservaDiaEntrada[posicao]}, Dia de saída: ${reservaDiaSaida[posicao]}`)
+    let reservas = []
+    reservaIdHotel.filter((element, index) => {
+        if(element == idHotelParametro){
+        reservas.push("Nome responsável - ", reservaNomeResponsavel[index], "Dia entrada - ", reservaDiaEntrada[index], "Dia saída - ", reservaDiaSaida[index] )
+        }        
+    })
+    console.log(reservas)
+    
+    
 }
 function ExibirHotelEnderecoDiaDeEntradaEsaida(idReservaParametro){
     let posicao = reservaId.indexOf(idReservaParametro)     
