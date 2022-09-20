@@ -6,39 +6,71 @@ let endereco = ["End 1", "End 2", "End 3"]
 let telefone = [222, 555, 333]
 // RESERVA
 let reservaId = [4, 5, 6]
-let reservaIdHotel = [2, 1, 3]
+let reservaIdHotel = [2, 3, 3]
 let reservaNomeResponsavel = ["Fulano", "Marcos", "Marcos"]
 let reservaDiaEntrada = [8, 11, 17]
 let reservaDiaSaida = [11, 16, 25]
 
 // CadastrarHotel()
 // CadastrarReserva()
+
 console.log("Dados Hotel -  " + idHotel + "  -  " + nomesHotel + "  -  " + categoria + "  -  " + endereco + "  -  " + telefone)
 console.log("Dados Reserva -  " + reservaId + "  -  " + reservaIdHotel + "  -  " + reservaNomeResponsavel + "  -  " + reservaDiaEntrada + "  -  " + reservaDiaSaida)
 
-// ExibirReservasDoHotel(3)
+// ExibirReservasDoHotel(2)
 // ExibirHotelEnderecoDiaDeEntradaEsaida(5)
-// ExibirTodasAsReservas("Marcos")
+// ExibirTodasAsReservas("Fulano")
 // ExibirHoteisDaCategoria("B")
-AtualizarTelefone(2, 698)
+// AtualizarTelefone(2, 698)
 
 
 function CadastrarHotel(){
-    id.push(prompt(`Qual o ID do hotel?`))
-    nome.push(prompt(`Qual o nome do hotel?`))
-    categoria.push(prompt(`Qual a categoria do hotel?`))
-    endereco.push(prompt(`Qual o endereço do hotel?`))
-    telefone.push(prompt(`Qual o telefone do hotel?`))
+    let validacaoId = parseInt(prompt(`Qual o ID do hotel?`))
+    idHotel.includes(validacaoId)
+
+    if(!idHotel.includes(validacaoId)){
+        idHotel.push(validacaoId)
+        nomesHotel.push(prompt(`Qual o nome do hotel?`))
+        categoria.push(prompt(`Qual a categoria do hotel?`))
+        endereco.push(prompt(`Qual o endereço do hotel?`))
+        telefone.push(prompt(`Qual o telefone do hotel?`))
+    }
+    else{
+        console.log("ID já existe, digite outro!")
+    }          
 }
 function CadastrarReserva(){
     reservaId.push(prompt(`Qual o ID da reserva?`))
-    reservaIdHotel.push(prompt(`Qual o ID do hotel?`))
+
+    let validacaoIdHotel = parseInt(prompt(`Qual o ID do hotel?`))
+    idHotel.includes(validacaoIdHotel)
+
+    if(idHotel.includes(validacaoIdHotel)){
+    reservaIdHotel.push(validacaoIdHotel)
     reservaNomeResponsavel.push(prompt(`Qual o nome do responsável?`))
-    reservaDiaEntrada.push(prompt(`Qual o dia de entrada?`))
-    reservaDiaSaida.push(prompt(`Qual o dia de saída?`))
+    let verificacaoDiaEntrada =  parseInt(prompt(`Qual o dia de entrada?`))
+    let verificacaoDiaSaida = parseInt(prompt(`Qual o dia de saida?`))
+
+    if(verificacaoDiaEntrada > verificacaoDiaSaida){
+    console.log(`Dia de saída menor que o dia de entrada, informações excluídas. Cadastre novamente!`)
+    reservaId.pop()
+    reservaIdHotel.pop()
+    reservaNomeResponsavel.pop() 
+    }
+    else{
+    reservaDiaEntrada.push(verificacaoDiaEntrada)
+    reservaDiaSaida.push(verificacaoDiaSaida)
+    }
+    }
+
+    else{
+        console.log(`ID do hotel não existe, digite novamente!`)
+        reservaId.pop()
+    }
 }
 function ExibirReservasDoHotel(idHotelParametro){
-    let posicao = idHotel.indexOf(idHotelParametro)     
+    let posicao = idHotel.indexOf(idHotelParametro)
+    console.log(posicao)
     console.log(`Nome: ${nomesHotel[posicao]}, Nome do responsável: ${reservaNomeResponsavel[posicao]}, Dia de entrada: ${reservaDiaEntrada[posicao]}, Dia de saída: ${reservaDiaSaida[posicao]}`)
 }
 function ExibirHotelEnderecoDiaDeEntradaEsaida(idReservaParametro){
